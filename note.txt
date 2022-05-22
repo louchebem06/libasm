@@ -1,0 +1,70 @@
+nasm -f elf64 *.s -o ou.o && ld out.o -o prog
+      COMPILATOR
+
+rax		accumulateur, contient la valeur de retour des fonctions
+rbx		registre général
+rcx		compteur de boucle
+rdx		partie haute d’une valeur 128 bits
+rsi		adresse source pour déplacement ou comparaison
+rdi		adresse destination pour déplacement ou comparaison
+rsp		pointeur de pile (stack pointer)
+rbp		pointeur de base (base pointer)
+r8		registre général
+r9		registre général
+r10		registre général
+r11		registre général
+r12		registre général
+r13		registre général
+r14		registre général
+r15		registre général
+
+Les 6 premiers paramètres sont passés comme ça :
+rdi (1er paramètre), rsi (2), rdx (3), rcx (4), r8 (5), r9(6).
+
+https://www.fil.univ-lille1.fr/portail/archive19-20/~meftali/PdM/Theme2.pdf
+
+INFO video intra
+
+%define MACH_SYSCALL(nb)	0x2000000 | nb
+%define STDOUT				1
+%define WRITE				4
+
+section .data
+hello:
+	.string db "Hello World!", 10 // , 10 == \n
+	.len equ $ - hello.string // taille de la string
+
+// les code suivant seras dans la section text
+section .text
+	global start
+	global _main
+	extern _printf // existe tu la trouveras tkt
+
+// start point d'entrer . ?? quivalant main ?
+start:
+	call _main
+	ret
+
+_main:
+	push rbp // push sauvegarder // scope
+	mov rbp, rsp // mov = rbp = rsp // registre de stack dans scope
+	sub rsp, 16 // ajoute 16 octer a rsp
+	lea rdi, [rel hello.string] // load hello world! in rdi
+	call _printf // appel printf
+	leave // moyen rapide de tout clear
+	ret
+
+_main:
+	push rbp
+	mov rbp, rsp
+	sub rsp, 16
+	move rdi, STDOUT
+	lea rsi, [rel hello.string]
+	mov rdx, hello.len
+	move rax, MACH_SYSTEM(WRITE)
+	syscall
+	leave
+	ret
+
+// syscall linux
+https://syscalls.w3challs.com/?arch=x86_64
