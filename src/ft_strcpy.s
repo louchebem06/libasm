@@ -3,12 +3,11 @@
 %define i rcx
 %define tmp rbx
 
-section .text
-	use64
-	global _ft_strcpy
+global _ft_strcpy
+
 _ft_strcpy:
-	PUSH	rbp ; classic init
-	MOV		rbp, rsp ; classic init
+	push	rbp ; classic init
+	mov		rbp, rsp ; classic init
 	xor		i, i ; i = 0
 while:
 	mov		tmp, [src + i] ; tmp = src + i

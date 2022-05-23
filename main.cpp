@@ -3,13 +3,12 @@
 #include <vector>
 #include <string>
 #include <cstring>
-#include "include/libasm.hpp"
+#include "include/libasm.h"
 
 using namespace std;
 
 void ft_strlen_test(void) {
 	vector<pair<string, size_t> > const test = {
-		make_pair("Null value", ft_strlen(NULL)),
 		make_pair("Empty", ft_strlen("")),
 		make_pair("Hello World!", ft_strlen("Hello World!")),
 	};
@@ -55,8 +54,36 @@ void ft_strcpy_test(void) {
 	cout << endl;
 }
 
+void print_strcmp(vector<pair<string, string> > const & tab) {
+	for (pair<string, string> p : tab) {
+		int ft, lib;
+		ft = ft_strcmp(p.first.c_str(), p.second.c_str());
+		lib = strcmp(p.first.c_str(), p.second.c_str());
+		cout << "ft_strcmp(" << (p.first.size() == 0 ? "Empty" : p.first) << ", " << (p.second.size() == 0 ? "Empty" : p.second) << ");" << endl;
+		cout << "result : " << ft << endl;
+		cout << "strcmp(" << (p.first.size() == 0 ? "Empty" : p.first) << ", " << (p.second.size() == 0 ? "Empty" : p.second) << ");" << endl;
+		cout << "result : " << lib << endl;
+		cout << "TEST : " << ((ft == lib) ? "✅" : "❌") << endl;
+		cout << endl;
+	}
+}
+
+void ft_strcmp_test(void) {
+	vector<pair<string, string> > const tab {
+		make_pair("HBCD", "abcd"),
+		make_pair("abcd", "ABCD"),
+		make_pair("A", "A"),
+		make_pair("AB", "A"),
+		make_pair("A", "AB"),
+		make_pair("", "")
+	};
+	
+	print_strcmp(tab);
+}
+
 int main(void) {
 	ft_strlen_test();
 	ft_strcpy_test();
+	ft_strcmp_test();
 	return (0);
 }
