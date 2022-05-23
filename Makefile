@@ -1,6 +1,7 @@
 NAME = libasm.a
 
-ASM_FILES = ft_strlen.s
+ASM_FILES = ft_strlen.s \
+			ft_strcpy.s
 
 SRCS		= $(addprefix src/,${ASM_FILES})
 OBJS_ASM	= ${SRCS:.s=.o}

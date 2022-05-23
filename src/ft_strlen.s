@@ -1,3 +1,6 @@
+%define str rdi
+%define i rcx
+
 section .text
 	use64
 	global _ft_strlen
@@ -5,16 +8,16 @@ section .text
 _ft_strlen:
 	PUSH	rbp ; classic init
 	MOV		rbp, rsp ; classic init
-	cmp		rdi, 0 ; check if first arg is null
+	cmp		str, 0 ; if (str == NULL)
 	je		null_return ; return 0
-	xor		rcx, rcx ; counter = 0
+	xor		i, i ; i = 0
 while:
-	cmp		byte [rdi + rcx], 0 ; arg[0] == 0
+	cmp		byte [str + i], 0 ; if (str + 1 == 0)
 	je		return ; return
-	inc		rcx ; counter++
+	inc		i ; i++
 	jmp		while ; continue
 return:
-	mov		rax, rcx ; ret = counter
+	mov		rax, i ; ret = i
 	leave ; clear
 	ret ; return ret
 null_return:
