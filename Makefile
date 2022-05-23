@@ -10,7 +10,7 @@ AR = ar -rcs
 RM = rm -rf
 ASM = nasm -f 
 
-ifeq ($(uname),Linux)
+ifeq ($(shell uname),Linux)
 	ASM += elf64
 else
 	ASM += macho64
