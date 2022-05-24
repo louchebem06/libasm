@@ -3,7 +3,7 @@ extern _ft_strlen
 extern _ft_strcpy
 extern _malloc
 
-; rdi (1er paramètre), rsi (2)
+; rdi (1 first arg), rsi (2)
 _ft_strdup:
 	push	rbp ; classic init
 	mov		rbp, rsp ; classic init
