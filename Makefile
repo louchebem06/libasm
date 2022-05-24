@@ -2,7 +2,8 @@ NAME = libasm.a
 
 ASM_FILES = ft_strlen.s \
 			ft_strcpy.s \
-			ft_strcmp.s
+			ft_strcmp.s \
+			ft_write.s
 
 SRCS		= $(addprefix src/,${ASM_FILES})
 OBJS_ASM	= ${SRCS:.s=.o}
@@ -10,7 +11,7 @@ OBJS_ASM	= ${SRCS:.s=.o}
 REMAKE = @make -j --no-print-directory
 AR = ar -rcs
 RM = rm -rf
-ASM = nasm -f 
+ASM = nasm -f
 OS = $(shell uname)
 
 ifeq (${OS},Linux)

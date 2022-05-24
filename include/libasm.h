@@ -5,6 +5,7 @@
 		extern "C" size_t	ft_strlen(const char *s);
 		extern "C" char		*ft_strcpy(char *dest, const char *src);
 		extern "C" int		ft_strcmp(const char *s1, const char *s2);
+		extern "C" ssize_t	ft_write(int fildes, const void *buf, size_t nbyte);
 	# elif __linux__
 		extern "C" size_t	_ft_strlen(const char *s);
 		extern "C" char		*_ft_strcpy(char *dest, const char *src);
@@ -15,6 +16,7 @@
 		size_t	ft_strlen(const char *s);
 		char	*ft_strcpy(char *dest, const char *src);
 		int		ft_strcmp(const char *s1, const char *s2);
+		ssize_t	ft_write(int fildes, const void *buf, size_t nbyte);
 	# elif __linux__
 		size_t	_ft_strlen(const char *s);
 		char	*_ft_strcpy(char *dest, const char *src);

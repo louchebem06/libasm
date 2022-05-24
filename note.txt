@@ -68,3 +68,8 @@ _main:
 
 // syscall linux
 https://syscalls.w3challs.com/?arch=x86_64
+
+// syscall Macos
+https://opensource.apple.com/source/xnu/xnu-1504.3.12/bsd/kern/syscalls.master
+
+https://webdevdesigner.com/q/64-bit-syscall-documentation-for-macos-assembly-73354/

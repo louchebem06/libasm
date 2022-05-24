@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 #include <cstring>
+#include <unistd.h>
+#include <errno.h>
 #include "include/libasm.h"
 
 using namespace std;
@@ -81,9 +83,36 @@ void ft_strcmp_test(void) {
 	print_strcmp(tab);
 }
 
+void ft_write_test(void) {
+	vector<pair<int, string> > const tab = {
+		make_pair(1, "Hello World!\n"),
+		make_pair(1, "\n"),
+		make_pair(1, "4242\n"),
+		make_pair(1, "99999999\n"),
+		make_pair(-1, "Hello World!\n"),
+		make_pair(-11, "\n"),
+		make_pair(-42, "4242\n"),
+		make_pair(-9, "99999999\n"),
+	};
+
+	for (pair<int, string> p : tab)
+	{
+		for (int i = 0; i < 2; i++, errno = 0)
+		{
+			int ret;
+			if (i == 0)
+				ret = ft_write(p.first, p.second.c_str(), p.second.size());
+			else
+				ret = write(p.first, p.second.c_str(), p.second.size());
+			(ret == -1) ? perror((i == 0) ? "FT" : "STD") : (void)(cout << ret << endl);
+		}
+	}
+}
+
 int main(void) {
 	ft_strlen_test();
 	ft_strcpy_test();
 	ft_strcmp_test();
+	ft_write_test();
 	return (0);
 }
