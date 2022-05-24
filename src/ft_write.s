@@ -9,14 +9,14 @@ _ft_write:
 	push	rbp ; classic init
 	mov		rbp, rsp ; classic init
 	mov		rax, MACH_SYSCALL(WRITE) ; ret = write()
-	syscall
-	jc errno
-	leave
-	ret
+	syscall ; call system
+	jc errno ; if error
+	leave ; clear
+	ret ; return
 errno:
-	mov rdi, rax
-    call ___error
-	mov [rax], rdi 
-	mov rax, -1
-	leave
-	ret
+	mov rdi, rax ; value WRITE in first arg
+    call ___error ; call error()
+	mov [rax], rdi ; errno = return write
+	mov rax, -1 ; ret = -1
+	leave ; clear
+	ret ; return

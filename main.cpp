@@ -5,6 +5,7 @@
 #include <cstring>
 #include <unistd.h>
 #include <errno.h>
+#include <fcntl.h>
 #include "include/libasm.h"
 
 using namespace std;
@@ -107,6 +108,58 @@ void ft_write_test(void) {
 			(ret == -1) ? perror((i == 0) ? "FT" : "STD") : (void)(cout << ret << endl);
 		}
 	}
+	cout << endl;
+}
+
+void ft_read_test(void) {
+	char buff[2][1024];
+	
+	for (int i = 0; i < 2; i++) {
+		int ret;
+		cout << "Please input for test READ " << (i == 0 ? "FT" : "STD") << ": " << flush;
+		if (i == 0)
+			ret = ft_read(1, buff[i], 1024);
+		else
+			ret = read(1, buff[i], 1024);
+		(ret == -1) ? perror((i == 0) ? "FT" : "STD") : (void)(cout << buff[i] << endl << "RET : " << ret << endl);
+	}
+	cout << "== Test file ==" << endl;
+	for (int i = 0; i < 2; i++) {
+		int ret;
+		int fd = open("text.txt", O_RDONLY);
+		if (i == 0)
+			ret = ft_read(fd, buff[i], 1024);
+		else
+			ret = read(fd, buff[i], 1024);
+		(ret == -1) ? perror((i == 0) ? "FT" : "STD") : (void)(cout << buff[i] << endl << "RET : " << ret << endl);
+		close(fd);
+	}
+	cout << "== Test invalid fd ==" << endl;
+	for (int i = 0; i < 2; i++) {
+		int ret;
+		if (i == 0)
+			ret = ft_read(-42, buff[i], 1024);
+		else
+			ret = read(-42, buff[i], 1024);
+		(ret == -1) ? perror((i == 0) ? "FT" : "STD") : (void)(cout << buff[i] << endl << "RET : " << ret << endl);
+	}
+	cout << endl;
+}
+
+void ft_strdup_test(void) {
+	char *buff;
+	vector<string> const tab = {
+		"I am string",
+		"4242",
+		"Hello World!"
+	};
+
+	cout << "== Test ft_strdup() ==" << endl;
+	for (string str : tab) {
+		buff = ft_strdup(str.c_str());
+		printf("%s\n", buff);
+		free(buff);
+	}
 }
 
 int main(void) {
@@ -114,5 +167,7 @@ int main(void) {
 	ft_strcpy_test();
 	ft_strcmp_test();
 	ft_write_test();
+	ft_read_test();
+	ft_strdup_test();
 	return (0);
 }
