@@ -20,6 +20,11 @@ typedef struct	s_list
 		extern "C" size_t	_ft_strlen(const char *s);
 		extern "C" char		*_ft_strcpy(char *dest, const char *src);
 		extern "C" int		_ft_strcmp(const char *s1, const char *s2);
+		extern "C" ssize_t	_ft_write(int fildes, const void *buf, size_t nbyte);
+		extern "C" ssize_t	_ft_read(int fildes, void *buf, size_t nbyte);
+		extern "C" char		*_ft_strdup(const char *s1);
+		extern "C" t_list	*_ft_create_elem(void *data);
+		extern "C" void		_ft_list_push_front(t_list **begin_list, void *data);
 	# endif
 # else
 	# ifdef __APPLE__
@@ -35,6 +40,11 @@ typedef struct	s_list
 		size_t	_ft_strlen(const char *s);
 		char	*_ft_strcpy(char *dest, const char *src);
 		int		_ft_strcmp(const char *s1, const char *s2);
+		ssize_t	_ft_write(int fildes, const void *buf, size_t nbyte);
+		ssize_t	_ft_read(int fildes, void *buf, size_t nbyte);
+		char	*_ft_strdup(const char *s1);
+		t_list	*_ft_create_elem(void *data);
+		void	_ft_list_push_front(t_list **begin_list, void *data);
 	# endif
 #endif
 
@@ -42,4 +52,11 @@ typedef struct	s_list
 	# define ft_strlen(str) _ft_strlen(str)
 	# define ft_strcpy(dest, src) _ft_strcpy(dest, src)
 	# define ft_strcmp(s1, s2) _ft_strcmp(s1, s2)
+	# define ft_write(fd, buf, size) _ft_write(fd, buf, size)
+	# define ft_read(fd, buf, size) _ft_read(fd, buf, size)
+	# define ft_strdup(str) _ft_strdup(str)
+	# define ft_create_elem(data) _ft_create_elem(data)
+	# define ft_list_push_front(list, data) _ft_list_push_front(list, data)
+	# define func_write _ft_write
+	# define func_read _ft_read
 #endif

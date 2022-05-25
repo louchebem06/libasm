@@ -67,7 +67,7 @@ _main:
 	ret
 
 // syscall linux
-https://syscalls.w3challs.com/?arch=x86_64
+https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/
 
 // syscall Macos
 https://opensource.apple.com/source/xnu/xnu-1504.3.12/bsd/kern/syscalls.master
