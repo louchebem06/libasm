@@ -22,7 +22,7 @@ REMAKE = @make -j --no-print-directory
 AR = ar -rcs
 RM = rm -rf
 ASM = nasm -f
-C++ = clang++ -c
+C++ = clang++
 OS = $(shell uname)
 
 ifeq (${OS},Linux)
@@ -45,6 +45,7 @@ SRCS_CPP	= $(addprefix test/,${CPP_TESTOR})
 OBJS_ASM	= ${SRCS:.s=.o}
 OBJS_BONUS	= ${SRCS_BONUS:.s=.o}
 OBJS_CPP	= ${SRCS_CPP:.cpp=.o}
+CFLAGS 		= -Wall -Wextra -Werror
 
 ifdef BONUS_LIBASM
 	OBJS = ${OBJS_ASM} ${OBJS_BONUS}
@@ -65,16 +66,16 @@ bonus:
 	${ASM} $< -o $@
 
 %.o: %.cpp
-	${C++} $< -o $@
+	${C++} -c $< -o $@
 
 clean:
 	${RM} ${OBJS_ASM} ${OBJS_BONUS} ${OBJS_CPP}
 
 fclean: clean
-	${RM} ${NAME} a.out
+	${RM} ${NAME} testor
 
 test: bonus ${OBJS_CPP}
-	clang++ -std=c++11 -Wall -Wextra -Werror ${OBJS_CPP} ${NAME}
+	${C++} -std=c++11 ${CFLAGS} ${OBJS_CPP} ${NAME} -o testor
 
 re:	fclean all
 
