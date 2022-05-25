@@ -4,11 +4,11 @@ ASM_FILES = ft_strlen.s \
 			ft_strcpy.s \
 			ft_strcmp.s
 
-ASM_BONUS = ft_list_push_front_bonus.s \
+ASM_BONUS = ft_atoi_base_bonus.s \
+			ft_list_push_front_bonus.s \
 			# ft_list_size_bonus.s \
 			# ft_list_sort_bonus.s \
-			# ft_list_remove_if_bonus.s \
-			# ft_atoi_base_bonus.s
+			# ft_list_remove_if_bonus.s
 
 CPP_TESTOR = main.cpp \
 				ft_read_test.cpp \
@@ -16,7 +16,8 @@ CPP_TESTOR = main.cpp \
 				ft_strcpy_test.cpp \
 				ft_strdup_test.cpp \
 				ft_strlen_test.cpp \
-				ft_strcmp_test.cpp
+				ft_strcmp_test.cpp \
+				ft_atoi_base_test.cpp
 
 REMAKE = @make -j --no-print-directory
 AR = ar -rcs

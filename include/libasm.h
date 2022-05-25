@@ -14,6 +14,7 @@ typedef struct	s_list
 		extern "C" ssize_t	ft_write(int fildes, const void *buf, size_t nbyte);
 		extern "C" ssize_t	ft_read(int fildes, void *buf, size_t nbyte);
 		extern "C" char		*ft_strdup(const char *s1);
+		extern "C" int		ft_atoi_base(char *str, char *base);
 		extern "C" t_list	*ft_create_elem(void *data);
 		extern "C" void		ft_list_push_front(t_list **begin_list, void *data);
 	# elif __linux__
@@ -23,6 +24,7 @@ typedef struct	s_list
 		extern "C" ssize_t	_ft_write(int fildes, const void *buf, size_t nbyte);
 		extern "C" ssize_t	_ft_read(int fildes, void *buf, size_t nbyte);
 		extern "C" char		*_ft_strdup(const char *s1);
+		extern "C" int		_ft_atoi_base(char *str, char *base);
 		extern "C" t_list	*_ft_create_elem(void *data);
 		extern "C" void		_ft_list_push_front(t_list **begin_list, void *data);
 	# endif
@@ -34,6 +36,7 @@ typedef struct	s_list
 		ssize_t	ft_write(int fildes, const void *buf, size_t nbyte);
 		ssize_t	ft_read(int fildes, void *buf, size_t nbyte);
 		char	*ft_strdup(const char *s1);
+		int		ft_atoi_base(char *str, char *base);
 		t_list	*ft_create_elem(void *data);
 		void	ft_list_push_front(t_list **begin_list, void *data);
 	# elif __linux__
@@ -43,6 +46,7 @@ typedef struct	s_list
 		ssize_t	_ft_write(int fildes, const void *buf, size_t nbyte);
 		ssize_t	_ft_read(int fildes, void *buf, size_t nbyte);
 		char	*_ft_strdup(const char *s1);
+		int		_ft_atoi_base(char *str, char *base);
 		t_list	*_ft_create_elem(void *data);
 		void	_ft_list_push_front(t_list **begin_list, void *data);
 	# endif
@@ -58,6 +62,7 @@ typedef struct	s_list
 	# define ft_write(fd, buf, size) _ft_write(fd, buf, size)
 	# define ft_read(fd, buf, size) _ft_read(fd, buf, size)
 	# define ft_strdup(str) _ft_strdup(str)
+	# define ft_atoi_base(str, base) _ft_atoi_base(str, base);
 	# define ft_create_elem(data) _ft_create_elem(data)
 	# define ft_list_push_front(list, data) _ft_list_push_front(list, data)
 	# define FT_WRITE _ft_write
