@@ -18,3 +18,4 @@ void	ft_strcmp_test(void);
 void	ft_write_test(void);
 void	ft_read_test(void);
 void	ft_strdup_test(void);
+void	ft_atoi_base_test(void);
