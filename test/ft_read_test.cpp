@@ -3,7 +3,7 @@
 void ft_read_test(void) {
 	char buff[2][1024];
 	typedef ssize_t (*ptrRead)(int, void *, size_t);
-	ptrRead rd[2] = { &func_read, &read };
+	ptrRead rd[2] = { &FT_READ, &read };
 	int ret;
 
 	cout << "== read() ==" << endl;

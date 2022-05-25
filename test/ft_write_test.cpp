@@ -12,7 +12,7 @@ void ft_write_test(void) {
 		make_pair(-9, "99999999\n"),
 	};
 	typedef ssize_t (*ptrWrite)(int, const void *, size_t);
-	ptrWrite wrt[2] = { &func_write, &write };
+	ptrWrite wrt[2] = { &FT_WRITE, &write };
 
 	cout << "== write() ==" << endl;
 	for (pair<int, string> p : tab)

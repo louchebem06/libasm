@@ -48,7 +48,10 @@ typedef struct	s_list
 	# endif
 #endif
 
-# ifdef __linux__
+# ifdef __APPLE__
+	# define FT_WRITE ft_write
+	# define FT_READ ft_read
+# elif __linux__
 	# define ft_strlen(str) _ft_strlen(str)
 	# define ft_strcpy(dest, src) _ft_strcpy(dest, src)
 	# define ft_strcmp(s1, s2) _ft_strcmp(s1, s2)
@@ -57,6 +60,6 @@ typedef struct	s_list
 	# define ft_strdup(str) _ft_strdup(str)
 	# define ft_create_elem(data) _ft_create_elem(data)
 	# define ft_list_push_front(list, data) _ft_list_push_front(list, data)
-	# define func_write _ft_write
-	# define func_read _ft_read
+	# define FT_WRITE _ft_write
+	# define FT_READ _ft_read
 #endif
